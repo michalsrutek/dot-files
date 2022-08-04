@@ -1,0 +1,43 @@
+[user]
+    name = Michal Srutek
+    email = michal.srutek@outlook.com
+[alias]
+    pf = !git fetch && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+    rom = !git fetch && git rebase origin/master
+    f = fetch
+    # updates your branch with upstream (if fast-forward is possible)
+    #  - works only if the branches are named the same and remote is origin
+    ff = !git merge --ff-only origin/`git branch 2>/dev/null | grep '*' | cut -d\" \" -f2-`
+    st = status
+	s = status
+    cm = commit
+    cma = commit --amend
+    br = branch
+    co = checkout
+    df = diff
+    rb = rebase
+    rbi = rebase -i
+    rbc = rebase --continue
+    cp = cherry-pick
+    # graph for current branch
+    l  = log --graph --decorate --pretty=oneline --abbrev-commit
+    # graph for all branches
+    ll = log --graph --decorate --pretty=oneline --date-order --abbrev-commit --all
+    # log for current branch showing diffs (-m is for showing mergecommits too)
+    ld = log -p -m
+    # log for current branch showing summary of changed files (-m is for showing mergecommits too)
+    ls = log --stat -m
+    # number of commits for each person
+    stats = shortlog -n -s --no-merges
+    # remove remote branch (remote must be named origin), usage: git rmb test
+    rmb = !sh -c 'git push origin :$1' -
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+[push]
+	default = current
+[core]
+	excludesfile = /Users/michalsrutek/.gitignore_global
+	ignorecase = false
+[http]
+	cookiefile = /Users/michalsrutek/.gitcookies
+[init]
+	defaultBranch = master
